@@ -1,0 +1,25 @@
+# Tessera (open-source release) configuration.
+#
+# Paths are relative to the repository root (resolved via tessera.config.resolve_path).
+
+paths:
+  model:  models/best_model.pth      # trained GNN weights (state_dict)
+  scaler: models/input_scaler.pt     # input normalisation statistics
+
+device:
+  cuda_device: -1   # GPU index; -1 forces CPU. Inference runs fine on CPU.
+
+# Surrogate-driven multi-objective design-space exploration (tessera.optimize).
+# In-memory Optuna study (NSGA-II / TPE / QMC / random) over a fixed-topology
+# G x G square grid; hypervolume reported vs. number of surrogate evaluations.
+# fixed_params are held constant while the signal/ground arrangement is searched.
+optimization:
+  sizes:            [5, 7, 9, 11]
+  signal_fraction:  0.48           # 5x5 -> 12 signals, 7x7 -> 24, 9x9 -> 39, 11x11 -> 58
+  n_trials:         100000
+  batch:            4096
+  batch_11x11:      512
+  samplers:         [nsga2, random]
+  seeds:            [0, 1, 2]
+  use_d4:           true
+  fixed_params:     {radius: 5.0e-6, pitch: 60.0e-6, height: 100.0e-6, liner: 0.5e-6, temperature: 300.0, freq: 15.0e9}

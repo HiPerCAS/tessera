@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+title: "Tessera: A Unified Electro-Thermo-Optimization Framework for TSV Networks"
+authors:
+  - family-names: Gharib
+    given-names: Mohamed
+  - family-names: Popryho
+    given-names: Leonid
+  - family-names: Partin-Vaisband
+    given-names: Inna
+license: BSD-3-Clause
+repository-code: "https://github.com/HiPerCAS/tessera"
+preferred-citation:
+  type: article
+  title: "From Physics to Surrogate Intelligence: A Unified Electro-Thermo-Optimization Framework for TSV Networks"
+  authors:
+    - family-names: Gharib
+      given-names: Mohamed
+    - family-names: Popryho
+      given-names: Leonid
+    - family-names: Partin-Vaisband
+      given-names: Inna
+  journal: "IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems"
+  year: 2026
+  doi: "10.1109/TCAD.2026.3718807"
+  url: "https://ieeexplore.ieee.org/document/11631696"

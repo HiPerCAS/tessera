@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Run outputs (optimisation results, generated figures, saved matrices)
+artifacts/
+results/
+*.npy
+*.png
+!assets/*.png
+
+# Editor / OS
+.ipynb_checkpoints/
+.DS_Store

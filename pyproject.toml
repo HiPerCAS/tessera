@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tessera-tsv"
+version = "1.0.0"
+description = "Physics-informed GNN surrogate for TSV-network S-parameter prediction and electro-thermal design-space exploration."
+readme = "README.md"
+license = { text = "BSD-3-Clause" }
+requires-python = ">=3.10"
+authors = [
+  { name = "Mohamed Gharib" },
+  { name = "Leonid Popryho" },
+  { name = "Inna Partin-Vaisband" },
+]
+keywords = ["TSV", "graph neural network", "surrogate model", "S-parameters",
+            "electro-thermal", "design space exploration", "EDA"]
+dependencies = [
+  "torch>=2.2",
+  "torch-geometric>=2.5",
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "optuna>=3.6",
+  "matplotlib>=3.7",
+  "pandas>=2.0",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+plot = ["seaborn>=0.13"]
+
+[project.urls]
+Paper = "https://ieeexplore.ieee.org/document/11631696"
+
+[tool.setuptools]
+packages = ["tessera"]
