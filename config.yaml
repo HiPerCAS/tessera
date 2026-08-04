@@ -23,3 +23,41 @@ optimization:
   seeds:            [0, 1, 2]
   use_d4:           true
   fixed_params:     {radius: 5.0e-6, pitch: 60.0e-6, height: 100.0e-6, liner: 0.5e-6, temperature: 300.0, freq: 15.0e9}
+
+# Steady-state thermal + closed EM-thermal loop (tessera.electrothermal).
+# Documentation of the default boundary conditions / solver knobs. Every value
+# below is also a keyword argument to steady_state_temperature() and
+# electrothermal_loop(); the function defaults are the source of truth, so
+# passing an argument in code always takes precedence over this file. The values
+# reproduce the validated 4x4 @ 100 GHz Ansys-matched case.
+electrothermal:
+  htc_W_per_m2K:      4.0e5        # substrate-bottom heatsink film coefficient
+  htc_top_W_per_m2K:  5.0          # top-face convection
+  htc_side_W_per_m2K: 10.0         # lateral (side-face) convection
+  t_amb_K:            300.0        # ambient / reference temperature
+  die_power_W:        0.5          # constant die power deposited over die_extent
+  sink_area_scale:    3.0          # heatsink-area multiplier on substrate bottom
+  cells_per_pitch:    3            # in-plane finite-volume resolution
+  nz:                 6            # through-thickness FV layers
+  max_cells:          120000       # grid-size guard (raise for large arrays)
+  excitation_mode:    all_signal   # all_signal | single_port | custom
+  passivity_project:  true         # SVD-clip S (sigma<=1) before power balance
+  max_iter:           10           # outer EM<->thermal iterations
+  tol_T_K:            1.0          # convergence tolerance on mean temperature
+
+# Ansys HFSS <-> Mechanical electrothermal sign-off (tessera.signoff). Requires
+# the [signoff] extra plus a machine with Ansys AEDT 2026.1 and PyAEDT. Every
+# key below is also a keyword override to generate_script()/run_signoff();
+# DEFAULT_SIGNOFF_CONFIG in tessera/signoff.py is the source of truth.
+signoff:
+  aedt_version:            "2026.1"
+  non_graphical:           true
+  solver:                  mechanical   # HFSS <-> Mechanical (Icepak not shipped)
+  pin_w:                   1.0          # incident power per signal-top port (W)
+  heatsink_htc_W_per_m2K:  4.0e5        # substrate-bottom heatsink
+  air_side_htc_W_per_m2K:  10.0         # substrate lateral convection
+  air_top_htc_W_per_m2K:   5.0          # die/substrate top convection
+  die_power_W:             0.3          # baseline die power at T = die_t_ref_K
+  die_alpha_W_per_K:       0.005        # T-dependent leakage slope (0 = constant)
+  max_iter:                20
+  tol_T_K:                 0.5

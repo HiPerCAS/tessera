@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tessera-tsv"
-version = "1.0.0"
-description = "Physics-informed GNN surrogate for TSV-network S-parameter prediction and electro-thermal design-space exploration."
+version = "1.1.0"
+description = "Physics-informed GNN surrogate for TSV-network S-parameters, steady-state thermal, closed EM-thermal coupling, and Ansys HFSS<->Mechanical sign-off."
 readme = "README.md"
 license = { text = "BSD-3-Clause" }
 requires-python = ">=3.10"
@@ -29,6 +29,9 @@ dependencies = [
 
 [project.optional-dependencies]
 plot = ["seaborn>=0.13"]
+# Ansys HFSS <-> Mechanical sign-off (tessera.signoff). Also requires a licensed
+# Ansys AEDT 2026.1 installation on the same machine; PyAEDT alone is not enough.
+signoff = ["ansys-aedt-core>=0.9"]
 
 [project.urls]
 Paper = "https://ieeexplore.ieee.org/document/11631696"
