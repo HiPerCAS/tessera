@@ -1,4 +1,4 @@
-# Tessera
+# TSV_PhGNN
 
 **A unified electro-thermo-optimization framework for through-silicon-via (TSV) networks.**
 
