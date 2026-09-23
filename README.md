@@ -2,7 +2,7 @@
 
 **A unified electro-thermo-optimization framework for through-silicon-via (TSV) networks.**
 
-Tessera replaces slow full-wave EM + thermal solvers with a physics-informed
+TSV_PhGNN replaces slow full-wave EM + thermal solvers with a physics-informed
 graph neural network (GNN) **surrogate**: given a TSV array's geometry,
 signal/ground arrangement, temperature, and frequency, it predicts the full
 complex **S-matrix** in milliseconds. That speed makes large multi-objective
